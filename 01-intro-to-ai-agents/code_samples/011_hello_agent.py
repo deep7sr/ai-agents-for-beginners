@@ -5,6 +5,7 @@ import asyncio
 from agent_framework import Agent
 from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
+from mcp import os
 
 """
 Hello Agent — Simplest possible agent
@@ -15,12 +16,15 @@ Azure AI Foundry project endpoint, and runs it in both non-streaming and streami
 There are XML tags in all of the get started samples, those are used to display the same code in the docs repo.
 """
 
+project_endpoint = os.getenv("AZURE_AI_PROJECT_ENDPOINT")
+model = os.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4o")
+
 
 async def main() -> None:
     # <create_agent>
     client = FoundryChatClient(
-        project_endpoint="https://akn-ai-usecase-resource-8120.services.ai.azure.com/api/projects/akn-ai-usecase-resource-project",
-        model="gpt-4o",
+        project_endpoint=project_endpoint,
+        model=model,
         credential=AzureCliCredential(),
     )
 

@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft. All rights reserved.
 
 import asyncio
+import os
 from random import randint
 from typing import Annotated
 
@@ -30,12 +31,13 @@ def get_weather(
 
 
 # </define_tool>
-
+project_endpoint = os.getenv("AZURE_AI_PROJECT_ENDPOINT")
+model = os.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4o")
 
 async def main() -> None:
     client = FoundryChatClient(
-        project_endpoint="https://akn-ai-usecase-resource-8120.services.ai.azure.com/api/projects/akn-ai-usecase-resource-project",
-        model="gpt-4o",
+        project_endpoint=project_endpoint,
+        model=model,
         credential=AzureCliCredential(),
     )
 
