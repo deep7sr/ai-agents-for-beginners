@@ -9,14 +9,14 @@ from agent_framework import Agent, tool
 from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
 from pydantic import Field
-
+from dotenv import load_dotenv      
+load_dotenv()
 """
 Add Tools — Give your agent a function tool
 
 This sample shows how to define a function tool with the @tool decorator
 and wire it into an agent so the model can call it.
 """
-
 
 # <define_tool>
 # NOTE: approval_mode="never_require" is for sample brevity.
